@@ -15,7 +15,7 @@ class LendingClub():
         self.config = config
         self.header = {'Authorization': self.config.auth_key, 'Content-Type': 'application/json'}
 
-    def get_historic_data(self, webdriver_path='./chromedriver', destination_dir = '../historical_data'):
+    def get_historic_data(self, webdriver_path='./chromedriver', destination_dir = 'historical_data'):
         if not os.file.exists(webdriver_path):
             raise('must specify valid path to webdriver for selenium')
 
@@ -55,13 +55,13 @@ class LendingClub():
         if not os.path.exists(zip_dir):
             os.makedirs(zip_dir)
 
-        os.system('mv ~/Downloads/LoanStats* ../historical_data/')
+        os.system('mv ~/Downloads/LoanStats* historical_data/')
 
         for file in os.listdir(destination_dir):
             try:
                 z = ZipFile(os.path.join(destination_dir, file))
                 z.extractall(path = destination_dir)
-                os.system('mv ../historical_data/' + file + ' ' + zip_dir)
+                os.system('mv historical_data/' + file + ' ' + zip_dir)
             except:
                 print(file + ' not a zip')
 
