@@ -3,6 +3,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 from time import sleep
+from copy import copy
 import seaborn as sns
 import pandas as pd
 import numpy as np
@@ -129,7 +130,7 @@ class LendingClub():
 
         self.master_df = master_df
 
-        mature_data = master_df.loc[(master_df.mob >= 36) | (master_df.loan_status == 'Charged Off')]
+        mature_data = copy(master_df.loc[(master_df.mob >= 36) | (master_df.loan_status == 'Charged Off')])
         mature_data['term_numeric'] = pd.to_numeric(mature_data.term.str.replace(' months', ''))
         mature_data['oldest_cr_line_months'] = (pd.to_datetime(mature_data.issue_d) - pd.to_datetime(mature_data.earliest_cr_line)).dt.total_seconds() / 3600 / 24 / 30
         self.train_data, self.validation_data = self.build_train_and_validation(mature_data, split_type=data_split_type)
