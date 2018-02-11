@@ -5,7 +5,7 @@ from copy import copy
 import xgboost as xgb
 import pandas as pd
 import numpy as np
-import pickle, os
+import pickle, os, pip
 
 class Model(object):
     def __init__(self, modeling_data):
@@ -101,6 +101,12 @@ class Model(object):
     def save(self, model_name, dir = 'saved_models'):
         if not os.path.exists(dir):
             os.mkdir(dir)
+
+        # save packages in env to requirements.txt
+        installed_packages = pip.get_installed_distributions()
+        with open('requirements.txt', 'w') as f:
+            for thing in installed_packages:
+                f.write("%s\n" % str(thing).replace(' ', '=='))
 
         m = copy(self)
 
