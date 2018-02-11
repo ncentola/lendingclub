@@ -1,0 +1,10 @@
+# files to ignore
+config.ini
+chromedriver
+deprecated.ipynb
+
+# dirs to ignore
+.ipynb_checkpoints
+historical_data
+saved_models
+__pycache__
