@@ -57,7 +57,7 @@ decorator==4.2.1
 cycler==0.10.0
 configparser==3.5.0
 chardet==3.0.4
-certifi==2018.1.18
+certifi==2022.12.7
 botocore==1.8.40
 boto3==1.5.26
 bleach==2.1.2
